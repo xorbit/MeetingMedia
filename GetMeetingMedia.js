@@ -75,6 +75,7 @@ getMedia('en', d.getMonth() + 1, d.getDate(), function (err, media) {
   }
   for (var i = 0; i < media.length; i++) {
     request('http://wol.jw.org' + media[i][3]).pipe(fs.createWriteStream(
-      (i+1) + '. ' + media[i][0] + ' - ' + media[i][2] + '.jpg'));
+      _.padStart((i+1), 2, '0') + '. ' + media[i][0] + ' - ' +
+      media[i][2] + '.jpg'));
   }
 });
