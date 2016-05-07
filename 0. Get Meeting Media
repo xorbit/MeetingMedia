@@ -1,0 +1,5 @@
+#!/bin/bash
+cd ~/MeetingMedia
+rm *.jpg
+source ~/.nvm/nvm.sh
+node ~/Projects/MeetingMedia/GetMeetingMedia.js
