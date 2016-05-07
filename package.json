@@ -13,5 +13,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Patrick Van Oosterwijck",
-  "license": "ISC"
+  "license": "MIT"
 }
