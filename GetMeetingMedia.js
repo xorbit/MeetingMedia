@@ -28,7 +28,8 @@ function getSources(html) {
 // Create absolute URL (add prefix if not absolute)
 
 function absUrl(url) {
-  if (url.indexOf('http://') != 0 && url.indexOf('https://') != 0) {
+console.log(url);
+  if (url && url.indexOf('http://') != 0 && url.indexOf('https://') != 0) {
     url = 'http://wol.jw.org' + url;
   }
   return url;
@@ -108,7 +109,8 @@ getMedia('en', d.getMonth() + 1, d.getDate(), function (err, media) {
     return;
   }
   for (var i = 0; i < media.length; i++) {
-    request(absUrl(media[i][3])).pipe(fs.createWriteStream(
+    var url = absUrl(media[i][3]);
+    if (url) request(url).pipe(fs.createWriteStream(
       _.padStart((i+1), 2, '0') + '. ' + media[i][0] + ' - ' +
       media[i][2] + '.jpg'));
   }
