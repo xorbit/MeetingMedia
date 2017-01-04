@@ -1,5 +1,5 @@
 #!/bin/bash
 cd ~/MeetingMedia
-rm *.jpg
+find . ! -samefile "$0" -type f -exec rm -f {} +
 source ~/.nvm/nvm.sh
 node ~/Projects/MeetingMedia/GetMeetingMedia.js
