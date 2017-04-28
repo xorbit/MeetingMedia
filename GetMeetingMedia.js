@@ -130,9 +130,10 @@ getMedia('en', d.getFullYear(), d.getMonth() + 1, d.getDate(), function (err, me
   }
   for (var i = 0; i < media.length; i++) {
     var m = media[i];
+    console.log(m);
     request(absUrl(m.url)).pipe(fs.createWriteStream(
-      _.padStart((i+1), 2, '0') + '. ' + media[i].source.name + ' - ' +
-      media[i].name));
+      _.padStart((i+1), 2, '0') + '. ' + media[i].source.name.replace('/', '-') + ' - ' +
+      media[i].name.replace('/', '-')));
   }
 });
 
