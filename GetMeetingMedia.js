@@ -2,7 +2,8 @@
 var request = require('request'),
     cheerio = require('cheerio'),
     fs = require('fs'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    sanitize = require('sanitize-filename');
     
 
 // Parse the page to extract source articles and remove duplicates
@@ -25,6 +26,8 @@ function getSources(html) {
   links = _.uniqBy(links, function (x) { return x.url });
   links = _.filter(links, function (x) { return x.name != '' });
   links = _.filter(links, function (x) { return x.name[0] != '\n' });
+  // Filter out "Apply Yourself to Reading and Teaching" icons
+  links = _.filter(links, function (x) { return !x.name.startsWith('th ') });
   return links;
 }
 
@@ -131,9 +134,9 @@ getMedia('en', d.getFullYear(), d.getMonth() + 1, d.getDate(), function (err, me
   for (var i = 0; i < media.length; i++) {
     var m = media[i];
     console.log(m);
-    request(absUrl(m.url)).pipe(fs.createWriteStream(
-      _.padStart((i+1), 2, '0') + '. ' + media[i].source.name.replace('/', '-') + ' - ' +
-      media[i].name.replace('/', '-')));
+    request(absUrl(m.url)).pipe(fs.createWriteStream(sanitize(
+      _.padStart((i+1), 2, '0') + '. ' + media[i].source.name.replace('/', '-') +
+      ' - ' + media[i].name.replace('/', '-'))));
   }
 });
 

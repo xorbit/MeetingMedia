@@ -1,12 +1,13 @@
 {
   "name": "meetingmedia",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Extract meeting media from Watchtower Online Library",
   "main": "GetMeetingMedia",
   "dependencies": {
-    "cheerio": "^0.20.0",
-    "lodash": "^4.11.1",
-    "request": "^2.72.0"
+    "cheerio": "^0.22.0",
+    "lodash": "^4.17.15",
+    "request": "^2.88.0",
+    "sanitize-filename": "^1.6.3"
   },
   "devDependencies": {},
   "scripts": {
