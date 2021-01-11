@@ -14,8 +14,7 @@ function getSources(html) {
   var $ = cheerio.load(html);
   // Get all links in the CLAM schedule and Watchtower sections
   var links = [];
-  $('div[class*="pub-mwb"] div.itemData a,' +
-      'div[class*="pub-w1"] div.itemData a').not('ul.noMarker a')
+  $('p[class*="so"] a, p[class*="se"] a')
   .each(function (i, el) {
     links.push({
       name: $(this).text(),
